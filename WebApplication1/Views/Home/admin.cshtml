@@ -1,0 +1,91 @@
+﻿@model IEnumerable<WebApplication1.Models.flightDetails>
+
+
+@{
+    ViewBag.Title = "admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Scripts/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Scripts/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Scripts/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Scripts/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Scripts/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Scripts/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/Scripts/css/main.css">
+<!--===============================================================================================-->
+
+
+
+
+<div class="container-table100">
+    <div style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+        <h1 style="text-align:center">FLIGHTS LIST</h1><br><br>
+        <div class="wrap-table100">
+            <div class="table100 ver1">
+
+                <div class="table100-nextcols">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="cell100 column2">Destination</th>
+                                <th class="cell100 column3">Departure</th>
+                                <th class="cell100 column4">Time</th>
+                                <th class="cell100 column5">Airline</th>
+                                <th class="cell100 column6">Seats Available</th>
+                                @*<th class="cell100 column7">Business Seats</th>*@
+                                <th class="cell100 column8"></th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                            <tr class="row100 body">
+
+                                <td class="cell100 column2">@s.Destination</td>
+                                <td class="cell100 column3">@s.Departure</td>
+                                <td class="cell100 column4">@s.Time</td>
+                                <td class="cell100 column5">@s.Airline</td>
+                                <td class="cell100 column6">
+                                    <p ><span style="font-size: small">Economy:  </span>@s.eSeatsAvailable<p>
+                                    <p ><span style="font-size: small">Business:  </span> @s.bSeatsAvailable<p>
+                                </td>
+                                @*<td class="cell100 column7">@s.bSeatsAvailable</td>*@
+                                <td class="cell100 column8">
+                                    <a href="~/Home/deleteFlight?id=@s.Id" style="color:red; margin-right:30px">
+                                        <i class="fa fa-remove" style="font-size:20px"></i>
+                                    </a>
+                                    <a href="~/Home/editFlight?id=@s.Id" >
+                                        <i class="fa fa-edit" style="font-size:20px"></i>
+                                    </a>
+                                </td>
+                                
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<div align="center">
+    <form action="addFlight">
+        <button class="boxed-btn4 " type="submit">ADD FLIGHT</button>
+    </form>
+</div>
+
+<br>
+<br>

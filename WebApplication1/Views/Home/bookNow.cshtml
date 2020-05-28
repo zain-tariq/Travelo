@@ -1,0 +1,136 @@
+﻿@model WebApplication1.Models.flightDetails
+@{
+    ViewBag.Title = "bookNow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align:center ;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">BOOK FLIGHT</h1><br><br>
+        <form class="form-horizontal" action="book">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Destination:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" value="@Model.Destination" name="Destination" readonly>
+                </div>
+                <label class="control-label col-sm-2">Departure:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" value="@Model.Departure" name="Departure" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Time:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" value="@Model.Time" name="Time" readonly>
+                </div>
+                <label class="control-label col-sm-2">Airline:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" value="@Model.Airline" name="Airline" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Date:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" value="@Model.Date" name="Date" readonly>
+                    <input type="hidden" name="id" value="@Model.Id">
+                </div>
+                <label class="control-label col-sm-2">Age:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Name:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" />
+                </div>
+                <label class="control-label col-sm-2">Phone Number:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" />
+                </div>
+            </div>
+
+             <div class="form-group">
+                <label class="control-label col-sm-2">CNIC/Bay Form:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" />
+                </div>
+                <label class="control-label col-sm-2">Passport Number:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Quantity: </label>
+                <div class="col-sm-3" style="margin-right:-100px">
+                    <div class="quantity">
+                        <p style="font-size:small">Economy </p>
+                        <input style =" margin-top:-10px ;border-radius: 5px; "type="number" name="eseat" min="0" max="@Model.eSeatsAvailable" step="1" value="0">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="quantity">
+                        <p style="font-size:small">Business </p>
+                        <input style ="margin-top:-10px; border-radius: 5px;" name="bseat" type="number" min="0" max="@Model.bSeatsAvailable" step="1" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:80px;margin-bottom:100px; margin-left:340px">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="boxed-btn4 ">BOOK FLIGHT</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+  
+    <script>
+  
+    jQuery('.quantity').each(function () {
+        var spinner = jQuery(this),
+        input = spinner.find('input[type="number"]'),
+        btnUp = spinner.find('.quantity-up'),
+        btnDown = spinner.find('.quantity-down'),
+        min = input.attr('min'),
+        max = input.attr('max');
+
+        btnUp.click(function () {
+            var oldValue = parseFloat(input.val());
+            if (oldValue >= max) {
+                var newVal = oldValue;
+            } else {
+                var newVal = oldValue + 1;
+            }
+            spinner.find("input").val(newVal);
+            spinner.find("input").trigger("change");
+        });
+
+        btnDown.click(function () {
+            var oldValue = parseFloat(input.val());
+            if (oldValue <= min) {
+                var newVal = oldValue;
+            } else {
+                var newVal = oldValue - 1;
+            }
+            spinner.find("input").val(newVal);
+            spinner.find("input").trigger("change");
+        });
+
+    });
+        </script>
